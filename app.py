@@ -23,22 +23,24 @@ st.set_page_config(
 
 
 # Load the JSON file and extract values
-file_name = 'config.json'
-with open(file_name, 'r') as file:
-    config = json.load(file)
-    OPENAI_API_KEY = config.get("OPENAI_API_KEY") # Loading the API Key
-    OPENAI_API_BASE = config.get("OPENAI_API_BASE") # Loading the API Base Url
+#file_name = 'config.json'
+#with open(file_name, 'r') as file:
+#    config = json.load(file)
+#    OPENAI_API_KEY = config.get("OPENAI_API_KEY") # Loading the API Key
+#    OPENAI_API_BASE = config.get("OPENAI_API_BASE") # Loading the API Base Url
 
+import os 
+from google.colab import userdata
 
 # Storing API credentials in environment variables
-os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
-os.environ["OPENAI_BASE_URL"] = OPENAI_API_BASE
+os.environ['OPENAI_API_KEY'] = userdata.get('OPENAI_API_KEY')
+os.environ["OPENAI_BASE_URL"] = userdata.get('OPENAI_API_BASE')
 
 # ── LLMs ─────────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_llms():
-    llm          = ChatOpenAI(model_name="gpt-4o")
-    evaluate_llm = ChatOpenAI(model_name="gpt-4o")
+    llm          = ChatOpenAI(model_name="gpt-4o-mini")
+    evaluate_llm = ChatOpenAI(model_name="gpt-4o-mini")
     return llm, evaluate_llm
 
 llm, evaluate_llm = load_llms()
