@@ -13,8 +13,8 @@ import sys
 import openai
 from openai import OpenAI
 print("Python:", sys.version)
-print("OpenAI version:", OpenAI.__version__)
-print("OpenAI location:", OpenAI.__file__)
+print("OpenAI version:", openai.__version__)
+print("OpenAI location:", openai.__file__)
 from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
