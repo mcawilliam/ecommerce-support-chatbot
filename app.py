@@ -10,6 +10,7 @@ from typing import TypedDict, List, Dict, Any
 
 
 import sys
+import openai
 from openai import OpenAI
 print("Python:", sys.version)
 print("OpenAI version:", OpenAI.__version__)
