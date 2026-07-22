@@ -8,13 +8,6 @@ import os
 from datetime import date
 from typing import TypedDict, List, Dict, Any
 
-
-import sys
-import openai
-from openai import OpenAI
-print("Python:", sys.version)
-print("OpenAI version:", openai.__version__)
-print("OpenAI location:", openai.__file__)
 from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
@@ -36,11 +29,12 @@ st.set_page_config(
 #    OPENAI_API_BASE = config.get("OPENAI_API_BASE") # Loading the API Base Url
 
 import os 
-from google.colab import userdata
-
+#from google.colab import userdata
+import streamlit as st
+from openai import OpenAI
 # Storing API credentials in environment variables
-os.environ['OPENAI_API_KEY'] = userdata.get('OPENAI_API_KEY')
-os.environ["OPENAI_BASE_URL"] = userdata.get('OPENAI_API_BASE')
+os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
+os.environ["OPENAI_BASE_URL"] = st.secrets['OPENAI_API_BASE']
 
 # ── LLMs ─────────────────────────────────────────────────────────────────────
 @st.cache_resource
